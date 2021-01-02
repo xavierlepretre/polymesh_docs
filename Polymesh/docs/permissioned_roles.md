@@ -6,11 +6,11 @@ Different roles on the Polymesh network have different levels of permissioning r
 
 ## Network Users
 
-All users of Polymesh go through a [Customer Due Diligence](cdd.md) process. With a valid CDD claim, a user can send and receive POLYX and interact with the Polymesh primitives to create and manage their identities and assets, settle instructions and so on.
+All users of Polymesh go through a [Customer Due Diligence](cdd.md) (CDD) process. With a valid CDD claim, a user can send and receive POLYX and interact with the Polymesh primitives to create and manage their identities and assets, settle instructions and so on.
 
 ## Operators
 
-Operators nodes are special nodes in the Polymesh network which author new blocks, and participate in finalising the blockchain.
+Operators nodes are special nodes in the Polymesh network, which author new blocks, and participate in finalising the blockchain.
 
 Unlike a permissionless network, in order to run an operator node, a user must be permissioned through the on-chain governance process. This is done via a [Polymesh Improvement Proposal](./governance.md).
 
@@ -28,4 +28,4 @@ A committee manages their own membership, voting to add or remove new members.
 
 ## Governing Council Membership
 
-The Governance Coucil ratify and reject PIPs and schedule their execution. Like committees, the governing council manage their own membership via their usual voting process.
+The Governing Council ratify and reject PIPs, and schedule their execution. Like committees, the Governing Council manage their own membership via their usual voting process.

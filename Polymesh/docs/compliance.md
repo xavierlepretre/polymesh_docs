@@ -1,6 +1,6 @@
 ## Overview
 
-Polymesh allows asset issuers to enforce relevant compliance on their assets in real-time, through the use of claim based transfer rules, and optional additional transfer restriction smart extensions.
+Polymesh allows asset issuers to enforce relevant compliance on their assets in real-time, through the use of claim-based transfer rules, and optional additional transfer-restriction smart extensions.
 
 The compliance manager, implemented in the base layer of the Polymesh blockchain, provides a flexible framework to allow asset issuers to easily configure complex transfer rules based on claims that must be held by their investors.
 
@@ -12,7 +12,7 @@ There are several types of claims that can be attested from one identity to anot
 
 The full list of possible claim types are:  
 
-```
+```rust
 pub enum ClaimType {
     /// User is Accredited
     Accredited,
@@ -39,7 +39,7 @@ pub enum ClaimType {
 }
 ```
 
-Of these, there are two "special" claims which are treated differently, which are:  
+Of these, there are two "special" claims that are treated differently, namely:
 
 - `CustomerDueDiligence`: This can only be issued by trusted [CDD](./cdd.md) service providers and allows a user general access to the Polymesh network.
 
@@ -53,9 +53,9 @@ Each claim has an expiry, after which the claim is no longer considered valid. F
 
 The compliance manager allows asset issuers to configure the compliance rules for their asset.
 
-Asset issuers start by specifying which other identities they trust for the purposes of assessing claims on their investors. This allows them to set rules which are only satisfied if an investor has the relevant claims, issued by these trusted identities. An asset issuer can include themselves in this list of trusted claim issuers, as well as their partnered KYC organisations.
+Asset issuers start by specifying which other identities they trust for the purposes of assessing claims on their investors. This allows them to set rules that are only satisfied if an investor has the relevant claims, issued by these trusted identities. An asset issuer can include themselves in this list of trusted claim issuers, as well as their partnered KYC organisations.
 
-Asset issuers also specify a scope for their asset. This scope allows their trusted claim issuers to issue claims that directly target the asset, by linking the claim to the assets scope. In the case of `InvestorZKProof` this scope is the granularity at which investors are required to link their identities (i.e. any identity that wishes to invest in an asset with a scope of X, must self-declare an `InvestorZKProof` linking any identities investing in an asset with scope X).
+Asset issuers also specify a scope for their asset. This scope allows their trusted claim issuers to issue claims that directly target the asset, by linking the claim to the asset's scope. In the case of `InvestorZKProof` this scope is the granularity at which investors are required to link their identities (i.e. any identity that wishes to invest in an asset with a scope of X, must self-declare an `InvestorZKProof` linking any identities investing in an asset with scope X).
 
 ## Compliance Rules
 
@@ -63,7 +63,7 @@ Asset issuers can specify compliance requirements for their assets. If both part
 
 Each individual compliance requirement consists of a list of conditions that the sender must satisfy, and a list of conditions that the receiver must satisfy:  
 
-```
+```rust
 pub struct ComplianceRequirement {
     pub sender_conditions: Vec<Condition>,
     pub receiver_conditions: Vec<Condition>,
@@ -76,7 +76,7 @@ All of the conditions for a particular compliance requirement (for both the send
 
 An asset issuer can choose to also pause compliance on their asset:  
 
-```
+```rust
 pub struct AssetCompliance {
     /// This flag indicates if asset compliance should be enforced
     pub paused: bool,
@@ -89,7 +89,7 @@ If any of the compliance requirements are satisfied in a particular leg settleme
 
 A rule can specify that a particular claim (issued by a trusted claim issuer) must exist, or must not exist, or that a group of claims must be present, or not present. It can also enforce that the sender or receiver is a particular identity.
 
-```
+```rust
 pub enum ConditionType {
     /// Condition to ensure that claim filter produces one claim.
     IsPresent(Claim),
@@ -107,6 +107,6 @@ pub enum ConditionType {
 }
 ```
 
-## Transfer Restriction Smart Extensions
+## Transfer-Restriction Smart Extensions
 
-In addition to the flexible claim based compliance manager, asset issuers can use transfer restriction [smart extensions](./smart_extensions.md) to further control the trading of their assets.
+In addition to the flexible claim-based compliance manager, asset issuers can use transfer-restriction [smart extensions](./smart_extensions.md) to further control the trading of their assets.

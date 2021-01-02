@@ -28,19 +28,19 @@ Assets held by an identity can be organised into [portfolios](./portfolios_custo
 
 An identity can add a claim to another identity, and in turn holds claims that have been added to it by other identities.
 
-To enforce compliance on their assets, asset issuers nominate trusted claim issuers to manage their investors claims related to their assets compliance rules.
+To enforce compliance on their assets, asset issuers nominate trusted claim issuers to manage their investors' claims related to their assets' compliance rules.
 
 ## Authentication and Keys
 
 Identities are created for users by [CDD service providers](./cdd.md).
 
-Unlike most blockchains, in Polymesh all on-chain actions are associated both with a signing key (the key used to sign the transaction) and an on-chain identity.
+Unlike most blockchains, in Polymesh, all on-chain actions are associated both with a signing key (the key used to sign transactions) and an on-chain identity.
 
-To facilitate this connection between identities and signing keys, each on-chain identity is associated with keys which are allowed to sign on its behalf. A given key can only be associated with at most one identity at any one time.
+To facilitate the connection between identities and signing keys, each on-chain identity is associated with keys that are allowed to sign on its behalf. A given key can only be associated with at most one identity at any one time.
 
 These keys are known either as primary keys or secondary keys.
 
-POLYX, the native token of Polymesh, is held at the key level. Staking and governance, both of which utilise POLYX, is also associated with keys. In both cases, although balances are held at the key level, any transaction involving POLYX must be associated with an identity that has a valid CDD claim.
+POLYX, the native token of Polymesh, is held at the key level. Staking and governance, both of which utilise POLYX, are also associated with keys. In both cases, although balances are held at the key level, any transaction involving POLYX must be associated with an identity that has a valid CDD claim.
 
 ## Primary and Secondary Keys
 
@@ -75,7 +75,7 @@ These types of keys can be held on hardware wallets, or can be generated off-lin
 
 In addition to public / private key pairs a key can also be a multisig account.
 
-A multisig is a single key which is controlled by one or more people. A *n* of *m* multisig requires *n* of its *m* members to agree on an action, before that action can be signed by that multisig.
+A multisig is a single key that is controlled by one or more people. A *n* of *m* multisig requires *n* of its *m* members to agree on an action, before that action can be signed by that multisig.
 
 - MultiSig Signers: the keys attached to the MultiSig as signers
 
@@ -89,11 +89,11 @@ A multisig is a single key which is controlled by one or more people. A *n* of *
 
 - MultiSig => Acting Identity is mapped through `KeyToIdentityIds` (None if MultiSig is not a Primary / Secondary Key)
 
-This has the consequence that MultiSig Signers can not send / receive POLYX (since they are not directly associated with an identity).
+This has the consequence that MultiSig Signers cannot send nor receive POLYX (since they are not directly associated with an identity).
 
-MultiSigs can hold funds, once they have been attached as a Primary / Secondary Key to an identity. If they are removed from the identity they can continue to hold funds, as per normal external key behaviour, but these funds are locked until the key is reattached to a CDD'ed identity.
+MultiSigs can hold funds, once they have been attached as a Primary or Secondary Key to an identity. If they are removed from the identity they can continue to hold funds, as per normal external key behaviour, but these funds are locked until the key is reattached to a CDD'ed identity.
 
-All transactions have a single payer, which is established when the transaction is first submitted. For a transaction executed via a MultiSig this will be the Creator Identity derived from the external MultiSig Signer account that submits the extrinsic.
+All transactions have a single payer, which is established when the transaction is first submitted. For a transaction executed via a MultiSig, this will be the Creator Identity derived from the external MultiSig Signer account that submits the extrinsic.
 
 When Signers are approving / proposing a MultiSig transaction, we have:
 
@@ -111,9 +111,9 @@ When a MultiSig executes a proposal, we have:
 
 ### Identity Keys
 
-To allow flexible identity modelling of indiviudals, organisations and different types of cooperating stakeholders, Polymesh allows one identity to act as a key for another identity. This means the origin identity is attached as a secondary key to the acting identiy.
+To allow flexible identity modelling of individuals, organisations and different types of cooperating stakeholders, Polymesh allows one identity to act as a key for another identity. This means the origin identity is attached as a secondary key to the acting identiy.
 
-An appropriately permissioned key on the origin can sign a message on behalf of the origin identity to forward an action through the acting identity. For example Acme could add their transfer agents identity as a secondary key on their identity, with limited permissions to only add or remove documentation for certain assets.
+An appropriately-permissioned key on the origin can sign a message on behalf of the origin identity to forward an action through the acting identity. For example Acme could add their transfer agent's identity as a secondary key on their identity, with limited permissions to only add or remove documentation for certain assets.
 
 ## Permissions
 

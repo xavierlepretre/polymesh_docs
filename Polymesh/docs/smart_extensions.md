@@ -18,7 +18,7 @@ A smart extension template is a copy of the smart extensions logic held on-chain
 
 To use a transfer restriction smart extension it must first be deployed to the Polymesh blockchain as a template, with some additional metadata:  
 
-```
+```rust
 pub struct TemplateMetadata<Balance> {
     /// Url that can contain the details about the template
     /// Ex- license, audit report.
@@ -36,7 +36,7 @@ pub struct TemplateMetadata<Balance> {
 
 Once an asset issuer has created an instance of a transfer restriction smart extension and configured it, they can attach it to their asset using:  
 
-```
+```rust
 //! - `add_extension` - used to permission the a smart extension address for a given ticker.
 //! - `archive_extension` - used to archive a smart extension meaning the extension is not used to verify compliance
 //! - `unarchive_extension` - used to un-archive a smart extension meaning the extension is now used to verify compliance
@@ -44,17 +44,17 @@ Once an asset issuer has created an instance of a transfer restriction smart ext
 
 A transfer restriction smart extension must have a `verify_transfer` function. This is called by the asset primitive to verify that a settlement is compliant:  
 
-```
-        pub fn verify_transfer(
-            &self,
-            _from: Option<IdentityId>,
-            _to: Option<IdentityId>,
-            value: Balance,
-            balance_from: Balance,
-            balance_to: Balance,
-            _total_supply: Balance,
-            current_holder_count: Counter,
-        ) -> RestrictionResult
+```rust
+pub fn verify_transfer(
+    &self,
+    _from: Option<IdentityId>,
+    _to: Option<IdentityId>,
+    value: Balance,
+    balance_from: Balance,
+    balance_to: Balance,
+    _total_supply: Balance,
+    current_holder_count: Counter,
+) -> RestrictionResult
 ```
 
 ## Smart Extension Fees

@@ -16,7 +16,7 @@ The contract allows meta-transactions so that third parties such as exchanges ca
 
 ## Relayer Middleware
 
-Lock events emitted by the Ethereum POLY locker contract are listened to by *relayer* processes and verified by a sufficient amount of block confirmations. Each relayer process extracts Ethereum lock transactions from the received events and requests a connected *signer* process to sign those transactions before proposing thus signed transactions to the on-chain Polymesh bridge multisig, more details below.
+Lock events emitted by the Ethereum POLY locker contract are listened to by *relayer* processes, and verified by a sufficient amount of block confirmations. Each relayer process extracts Ethereum lock transactions from the received events and requests a connected *signer* process to sign those transactions before proposing thus-signed transactions to the on-chain Polymesh bridge multisig, more details below.
 
 Each signer has a Polymesh address which is registered in the bridge multisig wallet. This way the signers act as multisig voters. However the signers' role is only to passively sign the incoming transactions. It is the responsibility of the relayers to submit the signers' votes to the Polymesh chain.
 
@@ -26,7 +26,7 @@ Minting of POLYX tokens is implemented in the Polymesh runtime, in the bridge pa
 
 Relayers are members of the bridge multisig account owned by the *bridge controller*. On the testnet, the number of relayers at genesis is 5. To start handling a transaction -- that is to change its status from absent -- at least 3 out of 5 relayers have to propose that same transaction.
 
-Even though there is no maximum limit of how much POLY can be bridged, the Alcyone testnet side sets a limit on how much POLY is bridged per unit of time. There is going to be no such a limit on the mainnet.
+Even though there is no maximum limit of how much POLY can be bridged, the Alcyone testnet side sets a limit on how much POLY is bridged per unit of time. There is going to be no such limit on the mainnet.
 
 ## State Diagram
 

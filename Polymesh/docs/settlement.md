@@ -26,27 +26,27 @@ Authorisation can be via an on-chain transaction, or signed data.
 
 Once an instruction is authorised by a counterparty, their assets are locked, and the instruction will settle once all counterparties have authorised.
 
-A counterparty can cancel a pending instruction. If any counterparty cancels, the entire instruction should be marked as cancelled (and everyones assets unlocked).
+A counterparty can cancel a pending instruction. If any counterparty cancels, the entire instruction should be marked as cancelled (and everyone's assets unlocked).
 
 ## Legs, Instructions and Venues
 
-Instructions and Legs are always concrete - specify all details at the point of creation and are immutable.
+Instructions and Legs are always concrete - they specify all details at the point of creation and are immutable.
 
 For an instruction to be executed, all counterparties of the instruction must signal their authorisation and lock any necessary asset / provide appropriate receipts.
 
 Only the creator of a venue can add instructions underneath it.
 
-Authorisation can only be provided before the instructions expiry data, and after its valid_from date.
+Authorisations can only be provided before the instruction's expiry date, and after its `valid_from` date.
 
 Asset issuers can restrict who can post an instruction that references their asset, or leave it unrestricted.
 
-Once all counterparties have authorised an instruction, it is automatically executed. At that point, if the execution fails (e.g. due to compliance on the assets) then instruction is marked as failed, if it succeeds it is stamped with the time of the successful execution.
+Once all counterparties have authorised an instruction, it is automatically executed. At that point, if the execution fails (e.g. due to compliance on the assets) the instruction is marked as failed, if it succeeds it is stamped with the time of the successful execution.
 
 Any counterparty to an instruction can reject it, marking it as rejected immediately, or simply wait until it expires.
 
 A counterpartys' authorisation is only valid if they either lock the relevant amount of assets to the instruction to cover any of their obligations across all legs, or provide a signed receipt that the transaction has occurred off-chain.
 
-Receipts which are used to authorise an instruction are marked as locked globally.
+Receipts that are used to authorise an instruction are marked as locked globally.
 
 If an instruction fails, is rejected or expires, all asset locks are removed (and receipts marked as unused).
 
@@ -58,19 +58,19 @@ If an instruction is executed, assets are transferred between counterparties, an
 
 ## Examples
 
-### Peer to Peer Transfer
+### Peer-to-Peer Transfer
 
 Alice wants to transfer 10 ACME tokens to Bob as a gift.
 
 She uses her “default” venue (or any venue that she has previously created) to generate an instruction, with a single leg.
 
-If Bob has provided pre-authorisation via signed data to Alice, she can submit it alongside the transaction as Bobs authorisation, and her own authorisation is implicit (since she is creating the instruction). Alices ACME tokens are locked until Bob authorises the instruction (or Alice cancels), assuming he has not pre-authorised.
+If Bob has provided pre-authorisation via signed data to Alice, she can submit it alongside the transaction as Bob's authorisation, and her own authorisation is implicit (since she is creating the instruction). Alice's ACME tokens are locked until Bob authorises the instruction (or Alice cancels), assuming he has not pre-authorised.
 
 Once the instruction has been fully authorised (which can happen upon creation if pre-authorised) it settles with Bob receiving 10 ACME tokens.
 
 ![Peer to peer](images/P2P.png)
 
-### Exchange Mediated Transfer
+### Exchange-Mediated Transfer
 
 ExchangeCo matches Alice, a seller of ACME, with Bob, a buyer of ACME, and coordinates an agreed price to exchange assets - 100 ACME for 10 USDC.
 
@@ -84,7 +84,7 @@ The instruction is executed with Alice receiving 10 USDC and Bob receiving 100 A
 
 ![Asset vs. Asset](images/TvT.png)
 
-### Exchange Mediated Transfer with Authorisation
+### Exchange-Mediated Transfer with Authorisation
 
 ExchangeCo matches Alice, a seller of ACME, with Bob, a buyer of ACME, and coordinates an agreed price to exchange assets - 100 ACME for 10 USDC.
 
@@ -108,12 +108,12 @@ Each BankCo individually authorises the instruction - when all BankCo’s have a
 
 ### Security Token Offering
 
-AcmeCo wishes to distribute 1000 ACME tokens to investors.
+AcmeCo wishes to distribute 1,000 ACME tokens to investors.
 
-AcmeCo creates a Venue defining the start and end date of their issuance.
+AcmeCo creates a venue defining the start and end date of their issuance.
 
 Alice provides AcmeCo with an authorisation to buy 100 ACME tokens at 10 USDC (i.e. an authorisation for an instruction with these two legs).
 
-AcmeCo creates an instruction under their settlement passing along Alice’s authorisation, along with their own. The instruction is executed with Alice receiving her ACME tokens, and AcmeCo receiving their assets.
+AcmeCo creates an instruction under their settlement passing along Alice’s authorisation, along with their own. The instruction is executed with Alice receiving her ACME tokens, and AcmeCo receiving their USDC.
 
 ![Primary Distribution / Funding](images/STO.png)

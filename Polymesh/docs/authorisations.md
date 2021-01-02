@@ -12,7 +12,7 @@ An identity or key can view any authorisations that they may have pending, and c
 
 There are various types of authorisations that Polymesh allows:  
 
-```
+```rust
 pub enum AuthorizationData<AccountId> {
     /// CDD provider's attestation to change primary key
     AttestPrimaryKeyRotation(IdentityId),
@@ -47,16 +47,16 @@ Each of these authorisations are issued by an identity, but take different param
 
 ## Payment for Authorisation
 
-In some cases it may not be possible for the approver (or rejected) of an authorisation to pay for the transaction to do so. When a key is joining a new identity, it may not have any POLYX funds to pay for the transaction, and cannot receive POLYX as it is not yet associated with an identity (with a valid CDD claim).
+In some cases it may not be possible for the approver (or rejecter) of an authorisation to pay for the transaction to do so. When a key is joining a new identity, it may not have any POLYX funds to pay for the transaction, and cannot receive POLYX as it is not yet associated with an identity (with a valid CDD claim).
 
 When a multisig signer is proposing or approving a multisig transaction it may similarily not have POLYX (a multisig signer cannot receive POLYX as it is not directly connected to an identity).
 
 So for the certain types of authorisation below, the transaction is paid for by the issuer of the authorisation, in particular the primary key of the identity that issued the authorisation.
 
-Authorisations types where the authorisation issuer pays are: 
+Authorisation types where the authorisation issuer pays are:
 
-- JoinIdentity
+- `JoinIdentity`
 
-- RotatePrimaryKey
+- `RotatePrimaryKey`
 
-- AddMultiSigSigner
+- `AddMultiSigSigner`

@@ -14,7 +14,7 @@ Assets can be partitioned into logical portfolios within a single identity.
 
 A particular asset can have different balances across portfolios within the same identity.
 
-Compliance is applied to the sum of balances across an identities portfolios (it can also be applied across all identities under a [single entity](./confidential_identity.md)).
+Compliance is applied to the sum of balances across an identity's portfolios (it can also be applied across all identities under a [single entity](./confidential_identity.md)).
 
 Permissions for keys can be applied at the portfolio granularity.
 
@@ -26,13 +26,13 @@ Secondary keys are managed at the identity level, but can be granted access to s
 
 The distribution of assets into portfolios, and the association of a portfolio with an identity are publicly stored on-chain.
 
-Every identity has a default identity which is used in the case that a specific identity is not specified as part of a transfer or instruction settlement.
+Every identity has a default portfolio which is used in the case that a specific portfolio is not specified as part of a transfer or instruction settlement.
 
 ## Custody
 
-A user can assign custodianship of a portfolio to another identity. The cleanly separates beneficial ownership of an asset (which always stays under the beneficiares identity) used for corporate actions, from custodial ownership where another entity may manage those assets on behalf of their beneficiary.
+A user can assign custodianship of a portfolio to another identity. This cleanly separates beneficial ownership of an asset (which always stays under the beneficiary's identity) used for corporate actions, from custodial ownership where another entity may manage those assets on behalf of their beneficiary.
 
-Any assets in a portfolio which has been assigned a custodian are managed exclusively by that custodian, and include any new assets which are transferred into the portfolio.
+All assets in a portfolio that has been assigned a custodian are managed exclusively by that custodian, and include any new assets that are transferred into the portfolio.
 
 A portfolio can only be assigned to a single custodian at a time. Once assigned to a custodian, the custodian can:  
 

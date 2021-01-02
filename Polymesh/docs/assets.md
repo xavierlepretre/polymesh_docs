@@ -1,10 +1,10 @@
 ## Overview
 
-Assets on Polymesh can represent any type of digitalised asset, and are originated and managed through the asset base layer logic in Polymesh.
+Assets on Polymesh can represent any type of digitalised asset, and are originated and managed through the asset base-layer logic in Polymesh.
 
 This ensures that all assets are created in a standardised manner, allowing related functionality such as corporate actions, settlement and compliance, to function seamlessly across all assets.
 
-Once an asset has been created, its ownership is represented via balances of that assets tokens held by different investors.
+Once an asset has been created, its ownership is represented via balances of that asset's tokens held by different investors.
 
 Ownership of an asset on Polymesh can be determined via its:
 
@@ -15,7 +15,7 @@ Ownership of an asset on Polymesh can be determined via its:
 The asset pallet documentation can be found at:
 <https://docs.polymesh.live/pallet_asset/index.html>
 
-Polymesh allows you to manage the full lifecycle of any asset directly on the Polymesh blockchain, including the issuance, initial distribution or fundraise of the asset and any subsequent corporate actions such as dividend payments, capital distributions or corporate ballots.
+Polymesh allows you to manage the full lifecycle of any asset directly on the Polymesh blockchain, including the issuance, initial distribution or fundraise of the asset and any subsequent corporate action such as dividend payments, capital distributions or corporate ballots.
 
 Asset tokens can be either divisible or indivisible.
 
@@ -23,7 +23,7 @@ Asset tokens can be either divisible or indivisible.
 
 Every asset on Polymesh has a unique ticker - a 12 character identifier for the asset.
 
-Users can register a ticker, and then when they are ready create an asset associated with that registered ticker.
+Users can register a ticker, and then, when they are ready, create an asset associated with that registered ticker.
 
 Ticker registrations can be transferred between identities and have an expiry date, currently set to 6 months from their initial registration.
 
@@ -49,11 +49,11 @@ Documentation can only be updated or modified by the identity that issued the co
 
 ## Ownership
 
-All asset ownership in Polymesh is at the identity granularity. Whilst an investor can organise their assets into different portfolios under their [identity](./identity.md), compliance is enforced at the identity level, so in order to pay or receive a particular assets token, the relevant identity must have claims that match the [compliance](./compliance.cd) rules specified by the asset issuer for the asset.
+All asset ownership in Polymesh is at the identity granularity. Whilst an investor can organise their assets into different portfolios under their [identity](./identity.md), compliance is enforced at the identity level, so in order to pay or receive a particular asset's token, the relevant identity must have claims that match the [compliance](./compliance.cd) rules specified by the asset issuer for the asset.
 
 ## Asset Issuers
 
-The asset issuer is the identity which registered the ticker and created the asset. The asset issuer can transfer ownership of an asset to another identity by issuing a `TransferAsset` authorisation which must be accepted by the target identity.
+The asset issuer is the identity that registered the ticker and created the asset. The asset issuer can transfer ownership of an asset to another identity by issuing a `TransferAsset` authorisation which must be accepted by the target identity.
 
 The asset issuer also has some additional controls which are soley accessible to them. These include:
 
@@ -65,7 +65,7 @@ The asset issuer also has some additional controls which are soley accessible to
 
 - permission venues to settle their asset
 
-In addition an asset issuer can execute a controller transfer of their token. This allows them to force transfer ownership of their asset tokens from any investor back to the primary issuance agent of the asset. The primary issuance agent is an identity which an asset issuer specifies for their asset, and is responsible for treasury management and token distribution.
+In addition, an asset issuer can execute a controlled transfer of their token. This allows them to force transfer ownership of their asset tokens from any investor back to the primary issuance agent of the asset. The primary issuance agent is an identity that an asset issuer specifies for their asset, and is responsible for treasury management and token distribution.
 
 ## Issuance
 
@@ -75,21 +75,21 @@ The issuance process for assets in Polymesh allows the originator of an asset (t
 
 Every asset, identified by its unique ticker, is associated with two identities:
 
-- the asset issuers identity: this is the identity that created the asset
+- the asset issuer's identity: this is the identity that created the asset
 
-- the primary issuance agents identity: this is the identity responsible for distributing the asset to investors.
+- the primary issuance agent's identity: this is the identity responsible for distributing the asset to investors.
 
-These identities can be the same, and the primary issuance agent identity is in fact defaulted to the asset issuers identity.
+These identities can be the same, and the primary issuance agent's identity is in fact defaulted to the asset issuer's identity.
 
-The asset issuer can set the primary issuance agent for their asset to any other identity, although the targetted identity must accept this role via a `AcceptPIA` authorisation. In the case where the primary issuance agent is the asset issuer, no authorisation is needed.
+The asset issuer can set the primary issuance agent for their asset to any other identity, although the targeted identity must accept this role via a `AcceptPIA` authorisation. In the case where the primary issuance agent is the asset issuer, no authorisation is needed.
 
 ### Process
 
 Once an asset issuer has created and configured their asset, they can then issue tokens representing ownership in the asset to the primary issuance agent.
 
-The primary issuance agent can then distribute those asset tokens to investors directly or via an security token offering, in both cases using the settlement engine.
+The primary issuance agent can then distribute those asset tokens to investors directly or via a security token offering, in both cases using the settlement engine.
 
-This approach allows a clean separation between the issuance process, which bypasses both the compliance and settlement engine and is restricted to only issuance to the configured primary issuance agent, and the distribution process which uses both the compliance and settlement engines.
+This approach allows a clean separation between the issuance process, which bypasses both the compliance and settlement engine and is restricted to only issuance to the configured primary issuance agent, and the distribution process, which uses both the compliance and settlement engines.
 
 ## Checkpoints
 
@@ -104,7 +104,7 @@ There are two ways to create a checkpoint.
 
 1. Call the dispatchable `create_checkpoint(ticker)` in the `asset` pallet. This creates a
    checkpoint for the asset of `ticker`. The total balance is recorded instantly, and each balance
-   held an identity is recorded just before the next transaction to or from that identity. Since the
+   held by an identity is recorded just before the next transaction to or from that identity. Since the
    balances of identities are not recorded instantly, we call this process _lazy checkpointing_. A
    consequence of this method is that no records are made if there are no transactions.
 
@@ -159,7 +159,7 @@ To read the total supply of `ticker` at checkpoint index `i` one calls the gette
 `total_supply_at(ticker, i)` in the asset pallet. The getter returns the value directly from runtime
 storage.
 
-To read the checkpoint balance of `identity` one calls the function `get_balance_at(ticker,
+To read the checkpoint balance of `identity`, one calls the function `get_balance_at(ticker,
 identity, i)` in the same pallet. This function returns the checkpoint balance at `i` by searching
 for the least checkpoint index greater or equal to `i` or, if no such record exists due to the
 absence of transactions, the current asset balance of `identity`.
